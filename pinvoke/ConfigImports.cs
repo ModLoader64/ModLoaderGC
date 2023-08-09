@@ -1,9 +1,9 @@
-﻿using static DolphinEmu.pinvoke.dup_string;
+﻿using static DolphinEmu.pinvoke.DupStringImports;
 using System.Runtime.InteropServices;
 
 namespace DolphinEmu.pinvoke;
 
-internal static class config
+internal static class ConfigImports
 {
     [DllImport(DolphinLibrary.Name)]
     public static extern IntPtr config_find_info_by_name(

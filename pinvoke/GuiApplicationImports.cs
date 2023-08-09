@@ -2,7 +2,7 @@
 
 namespace DolphinEmu.pinvoke;
 
-internal static class gui_application
+internal static class GuiApplicationImports
 {
     [DllImport(DolphinLibrary.Name)]
     public static extern void gui_application_init();

@@ -1,4 +1,4 @@
-﻿using static DolphinEmu.pinvoke.core;
+﻿using static DolphinEmu.pinvoke.CoreImports;
 
 namespace DolphinEmu;
 

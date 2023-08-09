@@ -2,7 +2,7 @@
 
 namespace DolphinEmu.pinvoke;
 
-internal static class core
+internal static class CoreImports
 {
     [DllImport(DolphinLibrary.Name)]
     public static extern double core_get_actual_emulation_speed();

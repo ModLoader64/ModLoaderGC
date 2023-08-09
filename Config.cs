@@ -1,4 +1,4 @@
-﻿using static DolphinEmu.pinvoke.config;
+﻿using static DolphinEmu.pinvoke.ConfigImports;
 
 namespace DolphinEmu;
 
@@ -62,8 +62,7 @@ public static class Config
     }
 
     private static ConfigSystem GetConfigSystemFromString(string name)
-    {
-        return name.ToUpperInvariant() switch
+        => name.ToUpperInvariant() switch
         {
             "MAIN" => ConfigSystem.Main,
             "SYSCONF" => ConfigSystem.SYSCONF,
@@ -80,7 +79,6 @@ public static class Config
             "ACHIEVEMENTS" => ConfigSystem.Achievements,
             _ => throw new ConfigSystemNotFoundException(name)
         };
-    }
 
     private static IntPtr FindProperty(string name, out bool uncached, params object[] args)
     {

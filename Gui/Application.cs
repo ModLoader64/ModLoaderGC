@@ -1,4 +1,4 @@
-﻿using static DolphinEmu.pinvoke.gui_application;
+﻿using static DolphinEmu.pinvoke.GuiApplicationImports;
 
 namespace DolphinEmu.Gui;
 

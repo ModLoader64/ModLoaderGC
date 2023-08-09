@@ -2,7 +2,7 @@
 
 namespace DolphinEmu.pinvoke;
 
-internal static class dup_string
+internal static class DupStringImports
 {
     [DllImport(DolphinLibrary.Name)]
     public static extern IntPtr dup_free(IntPtr str);
