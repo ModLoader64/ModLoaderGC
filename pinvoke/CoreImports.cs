@@ -2,76 +2,76 @@
 
 namespace DolphinEmu.pinvoke;
 
-internal static class CoreImports
+internal static partial class CoreImports
 {
-    [DllImport(DolphinLibrary.Name)]
-    public static extern double core_get_actual_emulation_speed();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial double core_get_actual_emulation_speed();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_is_running();
+    public static partial bool core_is_running();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_is_running_and_started();
+    public static partial bool core_is_running_and_started();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_is_running_in_current_thread();
+    public static partial bool core_is_running_in_current_thread();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_is_cpu_thread();
+    public static partial bool core_is_cpu_thread();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_is_gpu_thread();
+    public static partial bool core_is_gpu_thread();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_is_host_thread();
+    public static partial bool core_is_host_thread();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern CoreState core_get_state();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial CoreState core_get_state();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_save_screenshot();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_save_screenshot();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_save_screenshot_as(
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial void core_save_screenshot_as(
+        string name);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_display_message(
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string message,
-        int time_in_ms);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial void core_display_message(
+        string message,
+        int timeInMs);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_run_as_cpu_thread(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_run_as_cpu_thread(
         Core.VoidCallbackFunc function);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_run_on_cpu_thread(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_run_on_cpu_thread(
         Core.VoidCallbackFunc function,
-        bool wait_for_completion);
+        [MarshalAs(UnmanagedType.Bool)] bool waitForCompletion);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern int core_add_on_state_changed_callback(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial int core_add_on_state_changed_callback(
         Core.StateChangedCallbackFunc callback);
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool core_remove_on_state_changed_callback(
+    public static partial bool core_remove_on_state_changed_callback(
         ref int handle);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_queue_host_job(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_queue_host_job(
         Core.VoidCallbackFunc job,
-        bool run_during_stop);
+        [MarshalAs(UnmanagedType.Bool)] bool runDuringStop);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_host_dispatch_jobs();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_host_dispatch_jobs();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void core_do_frame_step();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_do_frame_step();
 }

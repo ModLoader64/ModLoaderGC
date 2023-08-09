@@ -3,48 +3,48 @@ using System.Runtime.InteropServices;
 
 namespace DolphinEmu.pinvoke;
 
-internal static class ConfigImports
+internal static partial class ConfigImports
 {
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_find_info_by_name(
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial IntPtr config_find_info_by_name(
+        string name);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_find_info_by_location(
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial IntPtr config_find_info_by_location(
         int system,
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string section,
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string key);
+        string section,
+        string key);
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool config_get_boolean(
+    public static partial bool config_get_boolean(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern int config_get_integer(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial int config_get_integer(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern ushort config_get_unsigned16(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial ushort config_get_unsigned16(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern uint config_get_unsigned32(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial uint config_get_unsigned32(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern float config_get_float(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial float config_get_float(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
-    [DllImport(DolphinLibrary.Name, EntryPoint = "config_get_string")]
-    private static extern IntPtr _config_get_string(
+    [LibraryImport(DolphinLibrary.Name, EntryPoint = "config_get_string")]
+    private static partial IntPtr _config_get_string(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
     public static string config_get_string(
         IntPtr property,
@@ -56,86 +56,86 @@ internal static class ConfigImports
         return str!;
     }
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern int config_get_enum(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial int config_get_enum(
         IntPtr property,
-        bool uncached);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_boolean(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void config_set_boolean(
         IntPtr property,
-        bool uncached,
-        bool value);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
+        [MarshalAs(UnmanagedType.Bool)] bool value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_integer(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void config_set_integer(
         IntPtr property,
-        bool uncached,
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
         int value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_unsigned16(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void config_set_unsigned16(
         IntPtr property,
-        bool uncached,
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
         ushort value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_unsigned32(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void config_set_unsigned32(
         IntPtr property,
-        bool uncached,
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
         uint value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_float(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void config_set_float(
         IntPtr property,
-        bool uncached,
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
         float value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_string(
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial void config_set_string(
         IntPtr property,
-        bool uncached,
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string value);
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
+        string value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void config_set_enum(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void config_set_enum(
         IntPtr property,
-        bool uncached,
+        [MarshalAs(UnmanagedType.Bool)] bool uncached,
         int value);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_memcard_path(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_memcard_path(
         int slot);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_agp_cart_path(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_agp_cart_path(
         int slot);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_gci_path(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_gci_path(
         int slot);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_gci_path_override(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_gci_path_override(
         int slot);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_exi_device(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_exi_device(
         int slot);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_si_device(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_si_device(
         int channel);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_adapter_rumble(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_adapter_rumble(
         int channel);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_simulate_konga(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_simulate_konga(
         int channel);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern IntPtr config_get_info_for_wiimote_source(
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial IntPtr config_get_info_for_wiimote_source(
         int index);
 }

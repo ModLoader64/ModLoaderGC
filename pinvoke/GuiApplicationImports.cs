@@ -2,64 +2,65 @@
 
 namespace DolphinEmu.pinvoke;
 
-internal static class GuiApplicationImports
+internal static partial class GuiApplicationImports
 {
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_init();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void gui_application_init();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_deinit();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void gui_application_deinit();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool gui_application_has_exited();
+    public static partial bool gui_application_has_exited();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_organization_domain(
-        [MarshalAs(UnmanagedType.LPWStr)] string org_domain);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_set_organization_domain(
+        string domain);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_organization_name(
-        [MarshalAs(UnmanagedType.LPWStr)] string org_name);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_set_organization_name(
+        string name);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_application_name(
-        [MarshalAs(UnmanagedType.LPWStr)] string application);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_set_application_name(
+        string name);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_application_version(
-        [MarshalAs(UnmanagedType.LPWStr)] string version);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_set_application_version(
+        string version);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_application_display_name(
-        [MarshalAs(UnmanagedType.LPWStr)] string name);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_set_application_display_name(
+        string name);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_desktop_filename(
-        [MarshalAs(UnmanagedType.LPWStr)] string name);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_set_desktop_filename(
+        string name);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_add_library_path(
-        [MarshalAs(UnmanagedType.LPWStr)] string path);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf16)]
+    public static partial void gui_application_add_library_path(
+        string path);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_exe_directory(
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string path);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial void gui_application_set_exe_directory(
+        string path);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_set_user_directory(
-        [MarshalAs(UnmanagedType.LPUTF8Str)] string path);
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial void gui_application_set_user_directory(
+        string path);
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern int gui_application_exec();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial int gui_application_exec();
 
-    [DllImport(DolphinLibrary.Name)]
+    [LibraryImport(DolphinLibrary.Name)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool gui_application_process_events();
+    public static partial bool gui_application_process_events();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_quit();
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void gui_application_quit();
 
-    [DllImport(DolphinLibrary.Name)]
-    public static extern void gui_application_exit(int retcode);
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void gui_application_exit(
+        int retcode);
 }
