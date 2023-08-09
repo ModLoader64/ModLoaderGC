@@ -2,19 +2,18 @@
 
 public enum SerialInterface_SIDevices
 {
-    SIDEVICE_NONE,
-    SIDEVICE_N64_MIC,
-    SIDEVICE_N64_KEYBOARD,
-    SIDEVICE_N64_MOUSE,
-    SIDEVICE_N64_CONTROLLER,
-    SIDEVICE_GC_GBA,
-    SIDEVICE_GC_CONTROLLER,
-    SIDEVICE_GC_KEYBOARD,
-    SIDEVICE_GC_STEERING,
-    SIDEVICE_DANCEMAT,
-    SIDEVICE_GC_TARUKONGA,
-    SIDEVICE_AM_BASEBOARD,
-    SIDEVICE_WIIU_ADAPTER,
-    SIDEVICE_GC_GBA_EMULATED,
-    SIDEVICE_COUNT
+    None,
+    N64_Mic,
+    N64_Keyboard,
+    N64_Mouse,
+    N64_Controller,
+    GC_GBA,
+    GC_Controller,
+    GC_Keyboard,
+    GC_Steering,
+    DanceMat,
+    GC_TaruKonga,
+    AM_Baseboard,
+    WiiU_Adapter,
+    GC_GBA_Emulated
 }
