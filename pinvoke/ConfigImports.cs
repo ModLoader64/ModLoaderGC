@@ -1,5 +1,4 @@
-﻿using static DolphinEmu.pinvoke.DupStringImports;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace DolphinEmu.pinvoke;
 
@@ -49,12 +48,7 @@ internal static partial class ConfigImports
     public static string config_get_string(
         IntPtr property,
         bool uncached)
-    {
-        var ptr = _config_get_string(property, uncached);
-        var str = Marshal.PtrToStringUTF8(ptr);
-        dup_free(ptr);
-        return str!;
-    }
+        => StringUtil.PtrToStringUtf8(_config_get_string(property, uncached));
 
     [LibraryImport(DolphinLibrary.Name)]
     public static partial int config_get_enum(
