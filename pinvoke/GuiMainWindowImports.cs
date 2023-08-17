@@ -14,6 +14,10 @@ internal static partial class GuiMainWindowImports
     public static partial void gui_main_window_show();
 
     [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
+    public static partial void gui_main_window_set_icon_from_file(
+        string path);
+
+    [LibraryImport(DolphinLibrary.Name, StringMarshalling = StringMarshalling.Utf8)]
     public static partial void gui_main_window_start_game_from_file(
         string path);
 }
