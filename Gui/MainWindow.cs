@@ -12,4 +12,7 @@ public static class MainWindow
 
     public static void Show()
         => gui_main_window_show();
+
+    public static void StartGameFromFile(string path)
+        => gui_main_window_start_game_from_file(path);
 }
