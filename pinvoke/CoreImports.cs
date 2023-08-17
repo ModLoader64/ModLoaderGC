@@ -74,4 +74,12 @@ internal static partial class CoreImports
 
     [LibraryImport(DolphinLibrary.Name)]
     public static partial void core_do_frame_step();
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_set_frame_end_callback(
+        Core.VoidCallbackFunc callback);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void core_set_reset_callback(
+        Core.VoidCallbackFunc callback);
 }

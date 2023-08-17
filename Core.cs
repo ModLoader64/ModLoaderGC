@@ -70,4 +70,10 @@ public static class Core
 
     public static void DoFrameStep()
         => core_do_frame_step();
+
+    public static void SetFrameEndCallback(VoidCallbackFunc callback)
+        => core_set_frame_end_callback(callback);
+
+    public static void SetResetCallback(VoidCallbackFunc callback)
+        => core_set_reset_callback(callback);
 }
