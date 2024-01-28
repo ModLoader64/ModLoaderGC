@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DolphinEmu", "DolphinEmu.csproj", "{34F420C1-CA1D-47AB-BF62-7C5CF5FBF9B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModLoaderGC", "ModLoaderGC.csproj", "{34F420C1-CA1D-47AB-BF62-7C5CF5FBF9B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
