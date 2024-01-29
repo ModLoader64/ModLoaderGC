@@ -63,4 +63,31 @@ internal static partial class MemoryImports
     public static partial void memory_write_u8(
         byte var,
         uint address);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial ushort memory_read_u16(
+    uint address);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void memory_write_u16(
+        ushort var,
+        uint address);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial uint memory_read_u32(
+    uint address);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void memory_write_u32(
+        uint var,
+        uint address);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial ulong memory_read_u64(
+    uint address);
+
+    [LibraryImport(DolphinLibrary.Name)]
+    public static partial void memory_write_u64(
+        ulong var,
+        ulong address);
 }

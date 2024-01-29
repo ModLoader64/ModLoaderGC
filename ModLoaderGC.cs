@@ -81,12 +81,9 @@ public class ModLoaderGC : IBinding
         MainWindow.SetIconFromFile(Path.Join(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "icon.png"));
         MainWindow.StartGameFromFile(rom);
 
-        Core.AddOnStateChangedCallback(state => { 
-            Console.WriteLine($"STATE CHANGED: {state}"); 
-        });
 
-        //Core.SetFrameEndCallback(() => Console.WriteLine("tick"));
-        Core.SetResetCallback(() => Console.WriteLine("reset"));
+        // setup callbacks
+        Dolphin.GlobalCallbacks.SetupCallbacks();
 
         // run Dolphin non-blocking
         while (!Application.HasExited)
