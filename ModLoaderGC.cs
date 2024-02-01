@@ -3,6 +3,9 @@ using DolphinEmu.Gui;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using ModLoader.API;
+using ImGuiNET;
+using ModLoaderGC.Dolphin;
+using System;
 
 namespace ModLoaderGC;
 
@@ -10,9 +13,8 @@ namespace ModLoaderGC;
 public class ModLoaderGC : IBinding
 {
     private static string rom = "rom.iso";
-    private static bool ignoreRom = false;
 
-/*    private static void OnInitImGui(IntPtr context)
+    private static void OnInitImGui(IntPtr context)
     {
         ImGui.SetCurrentContext(context);
 
@@ -23,67 +25,59 @@ public class ModLoaderGC : IBinding
         ImGui.GetStyle().ScaleAllSizes(1);
 
         ImGui.GetIO().Fonts.AddFontFromFileTTF(Path.Join(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "Roboto-Regular.ttf"), 20);
-    }*/
+    }
 
-    /*private static void OnRenderImGui(IntPtr context)
+    private static void OnRenderImGui(IntPtr context)
     {
         ImGui.SetCurrentContext(context);
-
-        ImGui.BeginMainMenuBar();
-        if (ImGui.BeginMenu("File"))
-        {
-            if (ImGui.MenuItem("Say hello"))
-                Osd.AddMessage("hello", Osd.Duration.Normal, Osd.Color.Green);
-            ImGui.EndMenu();
-        }
-        ImGui.EndMainMenuBar();
-
-        *//*if (ImGui.Begin("Rupees"))
-        {
-            int rupees = Memory.ReadByte(0x803c4c0c) << 8 | Memory.ReadByte(0x803c4c0d);
-            ImGui.Text($"Rupees: {rupees}");
-        }*//*
-        ImGui.End();
-    }*/
-
-    [STAThread]
-    static void Main(string[] args)
-    {
-        using var loader = new DolphinLoader();
+        GlobalCallbacks.OnVI();
     }
 
     public static void InitBinding()
     {
         Console.WriteLine("ModLoaderGC Init");
-        // set ImGui callbacks
-        /*Osd.SetImGuiInitCallback(OnInitImGui);
-        Osd.SetImGuiRenderCallback(OnRenderImGui);*/
 
-        // tell Dolphin where its base directory is and where qt plugins are located
-        Application.AddLibraryPath(Path.Join(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "QtPlugins"));
-        Application.SetExeDirectory(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName);
+        using var loader = new DolphinLoader();
+
+        // set ImGui callbacks
+        Osd.SetImGuiInitCallback(OnInitImGui);
+        Osd.SetImGuiRenderCallback(OnRenderImGui);
+
+
+        Console.WriteLine("ModLoaderGC ImGui Initialized");
 
         // initialize application
         Application.SetApplicationDisplayName("modloader64");
         Application.SetUserDirectory("dolphin_data");
         Application.Initialize();
+
+        Console.WriteLine("ModLoaderGC Init Finished");
     }
 
     public static void StartBinding()
     {
+        Console.WriteLine("ModLoaderGC Start");
         // check "Source\Core\DolphinQt\Plugin\config.cpp" for a list of exposed properties
         // some config files are also located in "<user dir>\Config"
         Config.Set("display.renderToMain", true);
+        
+        // memory size
+        Config.Set("core.ramOverrideEnable", true);
+        Config.Set("core.mem1Size", 0x04000000U); //64MB RAM
 
+        Console.WriteLine("ModLoaderGC Create Main Window");
         // initialize main window
         MainWindow.Create();
         MainWindow.Show();
         MainWindow.SetIconFromFile(Path.Join(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "icon.png"));
+        Console.WriteLine("ModLoaderGC Finished Creating Main Window");
         MainWindow.StartGameFromFile(rom);
-
+        Console.WriteLine($"ModLoaderGC Starting {rom}");
 
         // setup callbacks
-        Dolphin.GlobalCallbacks.SetupCallbacks();
+        Console.WriteLine("ModLoaderGC Setting Up ML Callbacks");
+        GlobalCallbacks.SetupCallbacks();
+        Console.WriteLine("ModLoaderGC Finished Setting Up ML Callbacks");
 
         // run Dolphin non-blocking
         while (!Application.HasExited)
@@ -141,7 +135,10 @@ internal class DolphinLoader : IDisposable
         _cimguiDll = NativeLibrary.Load(Path.Join(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "cimgui.dll"),
             Assembly.GetExecutingAssembly(),
             DllImportSearchPath.UserDirectories);
-        Console.WriteLine(_dolphinDll.ToString());
+
+        // tell Dolphin where its base directory is and where qt plugins are located
+        Application.AddLibraryPath(Path.Join(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "QtPlugins"));
+        Application.SetExeDirectory(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName);
     }
 
     private void UnloadLibrary()
